@@ -1,0 +1,370 @@
+body {
+  background: #e6ecf0;
+  color: #14171a;
+  font-size: 14px;
+  line-height: 20px;
+  overflow-y: scroll;
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.HomePage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.HomePage-content {
+  background-color: #fff;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-grow: 1;
+}
+
+.HomePage-cell {
+  align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.HomePage-login {
+  left: 0;
+  position: absolute;
+  top: 20px;
+  width: 100%;
+}
+
+.HomePage-login .LoginForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 600px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.HomePage-login .LoginForm-input {
+  margin-right: 12px;
+  width: 210px;
+}
+
+.LoginForm input {
+  box-sizing: border-box;
+  margin-top: 12px;
+}
+
+.HomePage-communicationBlock {
+  background: plum;
+  overflow: hidden;
+  position: relative;
+}
+
+.HomePage-communicationBlock .twitterIcon-bird {
+  height: 140vh;
+  right: -80vh;
+  top: -20vh;
+}
+
+.HomePage-communicationBlock .twitterIcon-bird {
+  max-width: none;
+  position: absolute;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+.HomePage-communicationContent {
+  max-width: 440px;
+}
+
+.HomePage-communicationItem {
+  color: #fff;
+  display: flex;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 24px;
+  margin: 48px auto;
+  position: relative;
+}
+
+.HomePage .StreamsFooter-list {
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: auto;
+}
+
+.StreamsFooter-list {
+  margin: 0 auto;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.u-cf::before,
+.u-cf::after {
+  content: " ";
+  display: table;
+}
+
+.StreamsFooter-item {
+  display: inline-block;
+  padding: 0 9px 0 9px;
+}
+
+li {
+  text-align: inherit;
+}
+
+.u-cf::after {
+  clear: both;
+}
+
+.HomePage .StreamsFooter {
+  position: static;
+}
+
+.StreamsFooter--fixed {
+  width: 100%;
+  bottom: 0;
+}
+
+.StreamsFooter {
+  border-top: 1px solid #e6ecf0;
+  padding: 11px 0;
+  background-color: #fff;
+  z-index: 2;
+}
+
+.Page-login .LoginForm-staticForgot a {
+  color: #aab8c2;
+}
+
+.fas, .far {
+  margin-right: 10px;
+}
+
+.fa-twitter {
+  color: plum;
+}
+
+a {
+  text-decoration: none;
+  background: transparent;
+}
+
+.HomePage-login .LoginForm-input input {
+  width: 100%;
+}
+
+.HomePage-login .LoginForm input {
+  padding: 12px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #657786;
+  opacity: 1;
+}
+
+.HomePage-signupBlock {
+  max-width: 350px;
+}
+
+.HomePage-signupBlock .Icon--bird {
+  color: #1da1f2;
+  font-size: 45px;
+  margin-bottom: 8px;
+}
+
+.Icon--bird::before {
+  content: "\f179";
+}
+
+.Icon::after,
+.Icon::before {
+  display: block;
+  font-family: "edgeicons";
+  font-weight: normal;
+  font-style: normal;
+  text-align: center;
+}
+
+.Icon {
+  background: transparent;
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
+  position: relative;
+}
+
+.HomePage-login .LoginForm .EdgeButton--secondary {
+  height: 100%;
+}
+
+.HomePage-login .LoginForm input {
+  padding: 12px;
+  width: auto;
+}
+
+input,
+textarea,
+div[contenteditable] {
+  transition: background 0.2s linear;
+}
+
+input,
+textarea,
+div[contenteditable],
+.t1-select {
+  display: inline-block;
+  margin: 0;
+  outline: 0;
+  background-color: #fff;
+  border: 1px solid #e6ecf0;
+  border-radius: 3px;
+}
+
+.t1-label,
+input,
+textarea,
+div[contenteditable],
+.t1-select {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+a {
+  text-decoration: none;
+  background: transparent;
+}
+
+.HomePage-noSignupForm .HomePage-signupSubtitle {
+  margin-top: 48px;
+}
+
+.HomePage-signupTitle {
+  font-size: 27px;
+  line-height: 32px;
+}
+
+.HomePage-signupSubtitle {
+  color: #14171a;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 16px auto;
+}
+
+.HomePage-buttonSignup,
+.HomePage-buttonLogin {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.EdgeButton--primary {
+  background-color: plum;
+  border: 1px solid plum;
+  color: #fff;
+}
+
+.EdgeButton--secondary {
+  background-color: #fff;
+  border: 1px solid plum;
+  color: plum;
+}
+.EdgeButton--medium {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 6px 16px;
+}
+
+.LoginForm input {
+  box-sizing: border-box;
+  margin-top: 12px;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+}
+
+.EdgeButton--secondary {
+  border: 1px solid plum;
+  color: plum;
+}
+
+.EdgeButton--medium {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.HomePage-getStartedBlock,
+.HomePage-signupHeader {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 16px auto;
+}
+
+.EdgeButton--secondary:hover {
+  background-color: #eaf5fd;
+  color: plum;
+}
+
+.EdgeButton:active,
+.EdgeButton:focus,
+.EdgeButton:hover {
+  text-decoration: none;
+}
+
+.EdgeButton,
+.EdgeButton:visited {
+  border-radius: 100px;
+  box-shadow: none;
+  font-weight: bold;
+  line-height: 20px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+}
+
+input,
+textarea,
+div[contenteditable],
+.t1-select {
+  display: inline-block;
+  margin: 0;
+  outline: 0;
+}
+
+input,
+textarea,
+div[contenteditable] {
+  transition: background 0.2s linear;
+}
+
+.EdgeButton,
+.EdgeButton:visited {
+  border-radius: 100px;
+  box-shadow: none;
+  cursor: pointer;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+}
