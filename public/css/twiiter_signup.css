@@ -1,128 +1,436 @@
-
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
-
-* {margin: 0; padding: 0;}
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 html {
-	height: 100%;
-	background: 
-		linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 body {
-	font-family: montserrat, arial, verdana;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
+/* Form Container */
 #msform {
-	width: 400px;
-	margin: 50px auto;
-	text-align: center;
-	position: relative;
-}
-#msform fieldset {
-	background: white;
-	border: 0 none;
-	border-radius: 3px;
-	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-	padding: 20px 30px;
-	box-sizing: border-box;
-	width: 80%;
-	margin: 0 10%;
-
-	position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
 }
 
-#msform fieldset:not(:first-of-type) {
-	display: none;
-}
-
-#msform input, #msform textarea {
-	padding: 15px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	margin-bottom: 10px;
-	width: 100%;
-	box-sizing: border-box;
-	font-family: montserrat;
-	color: #2C3E50;
-	font-size: 13px;
-}
-
-#msform .action-button {
-	width: 100px;
-	background: #27AE60;
-	font-weight: bold;
-	color: white;
-	border: 0 none;
-	border-radius: 1px;
-	cursor: pointer;
-	padding: 10px 5px;
-	margin: 10px 5px;
-}
-#msform .action-button:hover, #msform .action-button:focus {
-	box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
-}
-
-.fs-title {
-	font-size: 15px;
-	text-transform: uppercase;
-	color: #2C3E50;
-	margin-bottom: 10px;
-}
-.fs-subtitle {
-	font-weight: normal;
-	font-size: 13px;
-	color: #666;
-	margin-bottom: 20px;
-}
-
+/* Progress Bar */
 #progressbar {
-	margin-bottom: 30px;
-	overflow: hidden;
+    margin-bottom: 30px;
+    overflow: hidden;
+    counter-reset: step;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(29, 155, 240, 0.1);
+}
 
-	counter-reset: step;
-}
 #progressbar li {
-	list-style-type: none;
-	color: white;
-	text-transform: uppercase;
-	font-size: 9px;
-	width: 33.33%;
-	float: left;
-	position: relative;
+    list-style-type: none;
+    color: #1d9bf0;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    width: 33.33%;
+    float: left;
+    position: relative;
+    text-align: center;
 }
+
 #progressbar li:before {
-	content: counter(step);
-	counter-increment: step;
-	width: 20px;
-	line-height: 20px;
-	display: block;
-	font-size: 10px;
-	color: #333;
-	background: white;
-	border-radius: 3px;
-	margin: 0 auto 5px auto;
+    content: counter(step);
+    counter-increment: step;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    background: #e1e8ed;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    font-weight: 700;
+    transition: all 0.3s ease;
 }
 
 #progressbar li:after {
-	content: '';
-	width: 100%;
-	height: 2px;
-	background: white;
-	position: absolute;
-	left: -50%;
-	top: 9px;
-	z-index: -1; 
+    content: '';
+    width: 100%;
+    height: 3px;
+    background: #e1e8ed;
+    position: absolute;
+    left: -50%;
+    top: 20px;
+    z-index: -1;
+    transition: all 0.3s ease;
 }
+
 #progressbar li:first-child:after {
-	
-	content: none; 
+    content: none;
 }
 
-#progressbar li.active:before,  #progressbar li.active:after{
-	background: #27AE60;
-	color: white;
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #1d9bf0;
+    color: #fff;
 }
 
+#progressbar li.completed:before {
+    background: #00ba7c;
+    content: '✓';
+}
 
+/* Form Fieldsets */
+#msform fieldset {
+    background: transparent;
+    border: 0 none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 40px 30px;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+/* Form Inputs */
+#msform input,
+#msform textarea {
+    padding: 16px 20px;
+    border: 2px solid #e1e8ed;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+    color: #14171a;
+    font-size: 16px;
+    background: #fff;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#msform input:focus,
+#msform textarea:focus {
+    border-color: #1d9bf0;
+    box-shadow: 0 0 0 3px rgba(29, 155, 240, 0.1);
+    transform: translateY(-2px);
+}
+
+#msform input::placeholder,
+#msform textarea::placeholder {
+    color: #657786;
+    opacity: 1;
+}
+
+#msform textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Form Titles */
+.fs-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: #14171a;
+    margin-bottom: 16px;
+    text-align: center;
+    background: linear-gradient(135deg, #1d9bf0 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.fs-subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    color: #657786;
+    margin-bottom: 32px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Action Buttons */
+#msform .action-button {
+    width: 140px;
+    background: linear-gradient(135deg, #1d9bf0 0%, #1a8cd8 100%);
+    font-weight: 700;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 14px 24px;
+    margin: 10px 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#msform .action-button:hover,
+#msform .action-button:focus {
+    background: linear-gradient(135deg, #1a8cd8 0%, #1781c4 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(29, 155, 240, 0.3);
+}
+
+#msform .action-button:active {
+    transform: translateY(0);
+}
+
+#msform .action-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Button Container */
+#msform fieldset .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    gap: 16px;
+}
+
+#msform fieldset:first-of-type .button-container {
+    justify-content: flex-end;
+}
+
+#msform fieldset:last-of-type .button-container {
+    justify-content: space-between;
+}
+
+/* Previous Button */
+#msform .previous {
+    background: transparent;
+    color: #657786;
+    border: 2px solid #e1e8ed;
+}
+
+#msform .previous:hover {
+    background: #f7f9fa;
+    color: #14171a;
+    border-color: #657786;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Submit Button */
+#msform .submit {
+    background: linear-gradient(135deg, #00ba7c 0%, #00a86b 100%);
+}
+
+#msform .submit:hover {
+    background: linear-gradient(135deg, #00a86b 0%, #00965a 100%);
+    box-shadow: 0 8px 25px rgba(0, 186, 124, 0.3);
+}
+
+/* Form Validation */
+#msform input.error {
+    border-color: #e0245e;
+    box-shadow: 0 0 0 3px rgba(224, 36, 94, 0.1);
+}
+
+#msform input.success {
+    border-color: #00ba7c;
+    box-shadow: 0 0 0 3px rgba(0, 186, 124, 0.1);
+}
+
+.error-message {
+    color: #e0245e;
+    font-size: 14px;
+    margin-top: -16px;
+    margin-bottom: 16px;
+    text-align: left;
+    font-weight: 500;
+}
+
+.success-message {
+    color: #00ba7c;
+    font-size: 14px;
+    margin-top: -16px;
+    margin-bottom: 16px;
+    text-align: left;
+    font-weight: 500;
+}
+
+/* Loading Animation */
+.loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid transparent;
+    border-top: 2px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Form Animation */
+#msform fieldset {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    #msform {
+        max-width: 100%;
+    }
+    
+    #msform fieldset {
+        padding: 30px 20px;
+    }
+    
+    .fs-title {
+        font-size: 24px;
+    }
+    
+    .fs-subtitle {
+        font-size: 14px;
+    }
+    
+    #msform input,
+    #msform textarea {
+        padding: 14px 16px;
+        font-size: 16px;
+    }
+    
+    #msform .action-button {
+        width: 120px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+    
+    #msform fieldset .button-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    #msform fieldset:first-of-type .button-container {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #msform fieldset {
+        padding: 20px 16px;
+    }
+    
+    .fs-title {
+        font-size: 20px;
+    }
+    
+    #msform .action-button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    
+    #progressbar li {
+        font-size: 10px;
+    }
+    
+    #progressbar li:before {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+}
+
+/* Focus States */
+#msform input:focus,
+#msform textarea:focus,
+#msform .action-button:focus {
+    outline: 2px solid #1d9bf0;
+    outline-offset: 2px;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    #msform fieldset,
+    #msform .action-button,
+    #msform input,
+    #msform textarea {
+        transition: none;
+    }
+    
+    .loading::after {
+        animation: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    #msform {
+        background: #fff;
+        border: 2px solid #000;
+    }
+    
+    #msform input,
+    #msform textarea {
+        border: 2px solid #000;
+    }
+    
+    #msform .action-button {
+        background: #000;
+        color: #fff;
+    }
+}

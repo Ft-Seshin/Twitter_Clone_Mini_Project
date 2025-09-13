@@ -1,86 +1,252 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="msg.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Seshgram - Messages</title>
+    <link rel="stylesheet" href="css/msg.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+    <div class="messages-container">
+        <!-- Left Sidebar - Message List -->
+        <div class="messages-sidebar">
+            <div class="messages-header">
+                <h4>Messages</h4>
+                <div class="header-actions">
+                    <i class="fas fa-edit" id="newMessageBtn" title="New Message"></i>
+                    <i class="fas fa-cog" id="settingsBtn" title="Settings"></i>
+                </div>
+            </div>
 
-   <div class="container">
-    <div class="messages">
-        <div class="heading">
-            <h4>Messages</h4>
-            <i class="fas fa-edit"></i>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="search" placeholder="Search messages" id="messageSearch">
+            </div>
+
+            <div class="message-categories">
+                <div class="category-tab active" data-category="primary">
+                    <span>Primary</span>
+                    <span class="unread-count" id="primaryCount">3</span>
+                </div>
+                <div class="category-tab" data-category="general">
+                    <span>General</span>
+                    <span class="unread-count" id="generalCount">2</span>
+                </div>
+                <div class="category-tab" data-category="requests">
+                    <span>Requests</span>
+                    <span class="unread-count" id="requestsCount">7</span>
+                </div>
+            </div>
+
+            <div class="message-list" id="messageList">
+                <!-- Primary Messages -->
+                <div class="message-category" id="primaryMessages">
+                    <div class="message-item" data-id="1" data-user="Shri" data-handle="@shri_art">
+                        <div class="profile-photo">
+                            <img src="https://i.pinimg.com/736x/fc/5f/43/fc5f430a27cc2338f182255196179ce8.jpg" alt="Profile Photo">
+                            <div class="active"></div>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <h5>Shri</h5>
+                                <span class="message-time">2m</span>
+                            </div>
+                            <p class="message-preview">How are you doing today?</p>
+                            <div class="unread-indicator"></div>
+                        </div>
+                    </div>
+
+                    <div class="message-item" data-id="2" data-user="Himika" data-handle="@himika123">
+                        <div class="profile-photo">
+                            <img src="https://static.tnn.in/thumb/msid-109171619,thumbsize-31652,width-1280,height-720,resizemode-75/109171619.jpg" alt="Profile Photo">
+                            <div class="active"></div>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <h5>Himika</h5>
+                                <span class="message-time">15m</span>
+                            </div>
+                            <p class="message-preview">Hey! Check out this amazing photo I took!</p>
+                            <div class="unread-indicator"></div>
+                        </div>
+                    </div>
+
+                    <div class="message-item" data-id="3" data-user="Alex Johnson" data-handle="@alexj_dev">
+                        <div class="profile-photo">
+                            <img src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg" alt="Profile Photo">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <h5>Alex Johnson</h5>
+                                <span class="message-time">1h</span>
+                            </div>
+                            <p class="message-preview">Thanks for the help with the JavaScript project!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- General Messages -->
+                <div class="message-category" id="generalMessages" style="display: none;">
+                    <div class="message-item" data-id="4" data-user="Sarah Wilson" data-handle="@sarahw_art">
+                        <div class="profile-photo">
+                            <img src="https://cdn4.sharechat.com/soloboys_36f3cff3_1622458025608_sc_cmprsd_40.jpg?tenant=sc&referrer=tag-service&f=rsd_40.jpg" alt="Profile Photo">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <h5>Sarah Wilson</h5>
+                                <span class="message-time">30m</span>
+                            </div>
+                            <p class="message-preview">Beautiful sunset today!</p>
+                            <div class="unread-indicator"></div>
+                        </div>
+                    </div>
+
+                    <div class="message-item" data-id="5" data-user="Mike Chen" data-handle="@mikechen_tech">
+                        <div class="profile-photo">
+                            <img src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg" alt="Profile Photo">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <h5>Mike Chen</h5>
+                                <span class="message-time">2h</span>
+                            </div>
+                            <p class="message-preview">AI is revolutionizing everything!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Request Messages -->
+                <div class="message-category" id="requestsMessages" style="display: none;">
+                    <div class="message-item request-message" data-id="6" data-user="Emma Davis" data-handle="@emmadavis">
+                        <div class="profile-photo">
+                            <img src="https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1708387200&semt=ais" alt="Profile Photo">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <h5>Emma Davis</h5>
+                                <span class="message-time">5m</span>
+                            </div>
+                            <p class="message-preview">Wants to connect with you</p>
+                            <div class="request-actions">
+                                <button class="accept-btn">Accept</button>
+                                <button class="decline-btn">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message-item request-message" data-id="7" data-user="David Brown" data-handle="@davidbrown">
+                        <div class="profile-photo">
+                            <img src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg" alt="Profile Photo">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <h5>David Brown</h5>
+                                <span class="message-time">1h</span>
+                            </div>
+                            <p class="message-preview">Would like to follow you</p>
+                            <div class="request-actions">
+                                <button class="accept-btn">Accept</button>
+                                <button class="decline-btn">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="message-item request-message" data-id="8" data-user="Lisa Wang" data-handle="@lisawang">
+                        <div class="profile-photo">
+                            <img src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg" alt="Profile Photo">
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <h5>Lisa Wang</h5>
+                                <span class="message-time">3h</span>
+                            </div>
+                            <p class="message-preview">Interested in your photography work</p>
+                            <div class="request-actions">
+                                <button class="accept-btn">Accept</button>
+                                <button class="decline-btn">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="search" placeholder="Search messages" id="message-search">
-        </div>
+        <!-- Right Side - Chat Interface -->
+        <div class="chat-container" id="chatContainer">
+            <div class="chat-placeholder">
+                <div class="placeholder-content">
+                    <i class="fas fa-comments"></i>
+                    <h3>Select a conversation</h3>
+                    <p>Choose a message from the list to start chatting</p>
+                </div>
+            </div>
 
-        <div class="category">
-            <h6 >Primary</h6>
-            <h6>General</h6>
-            <h6 class="message-request">Requests(7)</h6>
-        </div>
+            <!-- Active Chat -->
+            <div class="active-chat" id="activeChat" style="display: none;">
+                <div class="chat-header">
+                    <div class="chat-user-info">
+                        <div class="profile-photo">
+                            <img id="chatUserPhoto" src="" alt="Profile Photo">
+                            <div class="active" id="chatUserStatus"></div>
+                        </div>
+                        <div class="user-details">
+                            <h5 id="chatUserName"></h5>
+                            <span id="chatUserHandle"></span>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <i class="fas fa-phone" title="Voice Call"></i>
+                        <i class="fas fa-video" title="Video Call"></i>
+                        <i class="fas fa-info-circle" title="User Info"></i>
+                    </div>
+                </div>
 
-        <div class="message-list">
-            <ul class="msg-list">
-                <li><div class="message">
-                    <div class="profile-photo">
-                        <img src="https://i.pinimg.com/736x/fc/5f/43/fc5f430a27cc2338f182255196179ce8.jpg" alt="Profile Photo">
-                        <div class="active"></div>
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will be loaded here -->
+                </div>
+
+                <div class="chat-input-container">
+                    <div class="chat-input">
+                        <button class="attach-btn">
+                            <i class="fas fa-paperclip"></i>
+                        </button>
+                        <input type="text" id="messageInput" placeholder="Type a message...">
+                        <button class="emoji-btn">
+                            <i class="fas fa-smile"></i>
+                        </button>
+                        <button class="send-btn" id="sendMessageBtn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
                     </div>
-                    <div class="message-body">
-                        <h5>Shri</h5>
-                        <p class="text-muted">How are you?</p>
-                    </div>
-                </div></li>
-                <li> <div class="message">
-                    <div class="profile-photo">
-                        <img src="https://cdn4.sharechat.com/soloboys_36f3cff3_1622458025608_sc_cmprsd_40.jpg?tenant=sc&referrer=tag-service&f=rsd_40.jpg" alt="" style="height: 50px; width: 50px; border-radius: 150px;">
-                        <div class="acti"></div>
-                    </div>
-                    <div class="message-body">
-                        <h5>Charles leclarc</h5>
-                        <p class="text-muted">Nice</p>
-                    </div>
-                </div></li>
-                <li><div class="message">
-                    <div class="profile-photo">
-                        <img src="https://cdn4.sharechat.com/soloboys_36f3cff3_1622458025608_sc_cmprsd_40.jpg?tenant=sc&referrer=tag-service&f=rsd_40.jpg" alt="" style="height: 50px; width: 50px; border-radius: 150px;">
-                    </div>
-                    <div class="message-body">
-                        <h5>Vanshika</h5>
-                        <p class="text-muted">Wassup</p>
-                    </div>
-                </div></li>
-                <li><div class="message">
-                    <div class="profile-photo">
-                        <img src="https://static.tnn.in/thumb/msid-109171619,thumbsize-31652,width-1280,height-720,resizemode-75/109171619.jpg" alt="" style="height: 50px; width: 50px; border-radius: 150px;">
-                        <div class="active"></div>
-                    </div>
-                    <div class="message-body">
-                        <h5>Himika</h5>
-                        <p class="text-muted">hey</p>
-                    </div>
-                </div></li>
-                <li><div class="message">
-                    <div class="profile-photo">
-                        <img src="https://cdn4.sharechat.com/soloboys_36f3cff3_1622458025608_sc_cmprsd_40.jpg?tenant=sc&referrer=tag-service&f=rsd_40.jpg" alt="" style="height: 50px; width: 50px; border-radius: 150px;">
-                    </div>
-                    <div class="message-body">
-                        <h5>Abishek</h5>
-                        <p class="text-muted">What are you doing</p>
-                    </div>
-                </div></li>
-            </ul>
-            
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- New Message Modal -->
+    <div class="modal" id="newMessageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>New Message</h3>
+                <button class="close-btn" id="closeNewMessageModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="search-section">
+                    <input type="text" id="newMessageSearch" placeholder="Search people...">
+                </div>
+                <div class="suggested-contacts" id="suggestedContacts">
+                    <!-- Suggested contacts will be loaded here -->
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script src="js/msg.js"></script>
 </body>
 </html>

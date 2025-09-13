@@ -1,17 +1,18 @@
 
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Seshgram</title>
+    <title>Seshgram - Home</title>
 
-    <link rel="stylesheet" href="twiiter_homepage.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="css/twiiter_homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="twiiter_homepage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/twiiter_homepage.js"></script>
 </head>
 <body>
     <section class="main">
@@ -39,17 +40,9 @@
                 <i class="far fa-bell"></i>
                 <span>Notifications</span>
             </a>
-            <a>
+            <a onclick="goToMessagePage()">
                 <i class="far fa-envelope"></i>
-                <button onclick="goToMessagePage()"><span>Messages</span></button>
-    <script>
-        function goToMessagePage() {
-            window.location.href = "msg.html";
-        }
-    </script>
-</body>
-</html>
-
+                <span>Messages</span>
             </a>
             
         </div>
@@ -208,7 +201,7 @@
                         <div class="t-1">
                             <span class="name">Himika</span>
                             <span class="uname">@himika123</span>
-                            <span class="uname"></span>
+                            <span class="uname">• 2h</span>
                         </div>
                         <div class="t-2">
                            
@@ -229,8 +222,74 @@
                     </div>
                 </div>
                 
+                <!-- Additional tweets for better search functionality -->
+                <div class="tweet tb">
+                    <div class="tweet-1">
+                        <img src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg" alt="" style="height: 50px; width: 50px; border-radius: 150px;">
+                    </div>
+                    <div class="tweet-2">
+                        <div class="t-1">
+                            <span class="name">Alex Johnson</span>
+                            <span class="uname">@alexj_dev</span>
+                            <span class="uname">• 4h</span>
+                        </div>
+                        <div class="t-2">
+                            <span class="content">Just finished building an amazing web application! The power of modern JavaScript frameworks is incredible. #WebDev #JavaScript #Coding</span>
+                        </div>
+                        <div class="t-3">
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-heart fav"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tweet tb">
+                    <div class="tweet-1">
+                        <img src="https://cdn4.sharechat.com/soloboys_36f3cff3_1622458025608_sc_cmprsd_40.jpg?tenant=sc&referrer=tag-service&f=rsd_40.jpg" alt="" style="height: 50px; width: 50px; border-radius: 150px;">
+                    </div>
+                    <div class="tweet-2">
+                        <div class="t-1">
+                            <span class="name">Sarah Wilson</span>
+                            <span class="uname">@sarahw_art</span>
+                            <span class="uname">• 6h</span>
+                        </div>
+                        <div class="t-2">
+                            <span class="content">Beautiful sunset today! Nature never fails to amaze me. #Nature #Photography #Sunset #Beautiful</span>
+                        </div>
+                        <div class="t-3">
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-heart fav"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tweet tb">
+                    <div class="tweet-1">
+                        <img src="https://static.tnn.in/thumb/msid-109171619,thumbsize-31652,width-1280,height-720,resizemode-75/109171619.jpg" alt="" style="height: 50px; width: 50px; border-radius: 150px;">
+                    </div>
+                    <div class="tweet-2">
+                        <div class="t-1">
+                            <span class="name">Mike Chen</span>
+                            <span class="uname">@mikechen_tech</span>
+                            <span class="uname">• 8h</span>
+                        </div>
+                        <div class="t-2">
+                            <span class="content">Excited about the new AI developments! Machine learning is revolutionizing everything. #AI #MachineLearning #Technology #Innovation</span>
+                        </div>
+                        <div class="t-3">
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-heart fav"></i>
+                        </div>
+                    </div>
+                </div>
+                
         </div>
         <div class="right">
+            <div class="r-inp">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search" placeholder="Search Seshgram">
+            </div>
+            
             <div class="gundem">
                 <div class="g-1">
                     <h2>Trending</h2>
@@ -259,6 +318,26 @@
                     <span class="tr">Trending worldwide</span>
                     <span class="g-content">Netflix</span>
                     <span class="sayi">1780 Tweet</span>
+                </div>
+                <div class="g-div">
+                    <span class="tr">Trending in Technology</span>
+                    <span class="g-content">JavaScript</span>
+                    <span class="sayi">1250 Tweet</span>
+                </div>
+                <div class="g-div">
+                    <span class="tr">Trending in Art</span>
+                    <span class="g-content">Photography</span>
+                    <span class="sayi">890 Tweet</span>
+                </div>
+                <div class="g-div">
+                    <span class="tr">Trending in Science</span>
+                    <span class="g-content">AI</span>
+                    <span class="sayi">2100 Tweet</span>
+                </div>
+                <div class="g-div">
+                    <span class="tr">Trending in Nature</span>
+                    <span class="g-content">Sunset</span>
+                    <span class="sayi">650 Tweet</span>
                 </div>
 
              <div class="friend-requests">
@@ -347,9 +426,57 @@
                         Decline
                     </button>
                 </div>
+                <br>
+                <div class="info">
+                    <div class="profile-photo">
+                        <img src="https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg?size=626&ext=jpg&ga=GA1.1.1700460183.1708387200&semt=ais" alt="" style="height: 50px; width: 50px; border-radius: 150px;">
+                    </div>
+                    <div>
+                        <h5>Emma Davis</h5>
+                        <p class="text-muted">
+                            12 mutual friends
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <div class="action">
+                    <button class="btn btn-primary">
+                        Accept
+                    </button>
+                    <button class="btn">
+                        Decline
+                    </button>
+                </div>
+                <br>
+                <div class="info">
+                    <div class="profile-photo">
+                        <img src="https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg" alt="" style="height: 50px; width: 50px; border-radius: 150px;">
+                    </div>
+                    <div>
+                        <h5>David Brown</h5>
+                        <p class="text-muted">
+                            5 mutual friends
+                        </p>
+                    </div>
+                </div>
+                <br>
+                <div class="action">
+                    <button class="btn btn-primary">
+                        Accept
+                    </button>
+                    <button class="btn">
+                        Decline
+                    </button>
+                </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function goToMessagePage() {
+            window.location.href = "msg.html";
+        }
+    </script>
 </body>
 </html>
 
