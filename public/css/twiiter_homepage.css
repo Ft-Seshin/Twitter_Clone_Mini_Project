@@ -271,60 +271,6 @@ body {
     color: #00ba7c !important;
 }
 
-/* Comment Section */
-.comment-section {
-    margin-top: 12px;
-    padding: 12px 0;
-    border-top: 1px solid #2f3336;
-}
-
-.comment-section textarea {
-    width: 100%;
-    background: #16181c;
-    border: 1px solid #2f3336;
-    border-radius: 8px;
-    padding: 12px;
-    color: #fff;
-    font-family: inherit;
-    font-size: 14px;
-    resize: vertical;
-    min-height: 80px;
-    margin-bottom: 8px;
-}
-
-.comment-section textarea::placeholder {
-    color: #71767b;
-}
-
-.comment-section button {
-    background: #1d9bf0;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-weight: 700;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.comment-section button:hover {
-    background: #1a8cd8;
-}
-
-#commentList {
-    list-style: none;
-    margin-top: 12px;
-}
-
-#commentList li {
-    background: #16181c;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    color: #fff;
-    font-size: 14px;
-}
 
 /* Right Sidebar */
 .right {
@@ -798,3 +744,190 @@ body {
         border-right: none;
     }
 }
+/* Tweet actions row */
+.action-btn {
+    cursor: pointer;
+    margin-right: 20px;
+    color: #71767b;
+    font-size: 14px;
+  }
+  .action-btn i {
+    margin-right: 5px;
+  }
+  .action-btn:hover {
+    color: #1d9bf0;
+  }
+  
+ 
+  .comment-input {
+    width: 90%;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #2f3336;
+    background: #16181c;
+    color: #fff;
+  }
+  
+  
+  /* Share modal */
+  .modal {
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center;
+    z-index: 1000;
+  }
+  .modal-content {
+    background:#fff; color:#000;
+    padding:20px; border-radius:8px; width:300px;
+  }
+
+  
+  .comments-list {
+    margin-bottom: 10px;
+  }
+  
+/* ---------------------------
+   Unified comment / reply UI
+   --------------------------- */
+
+/* Hide comment-thread in search results (prevents extra Post box) */
+.search-results .comment-thread,
+.search-results textarea,
+.search-results .post-comment {
+  display: none !important;
+}
+
+/* comment thread container inside each tweet */
+.tweet .comment-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-top: 1px solid #2f3336;
+  padding-top: 12px;
+  margin-top: 8px;
+}
+
+/* list of comment bubbles */
+.tweet .comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* generic comment bubble */
+.tweet .comment-item {
+  display: inline-block;
+  max-width: 90%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  line-height: 1.3;
+  font-size: 14px;
+  color: #e6eef6;
+  background: #07111a; /* default bubble color (other users) */
+  border: 1px solid rgba(255,255,255,0.03);
+  word-break: break-word;
+}
+
+/* current user ("You: ...") bubble — align right and slightly different tone */
+.tweet .comment-item.you {
+  margin-left: auto;
+  background: linear-gradient(180deg, #0e1830 0%, #0b1526 100%);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* small timestamp / meta inside a comment (if you add it) */
+.tweet .comment-item .meta {
+  display: block;
+  font-size: 12px;
+  color: #8b98a5;
+  margin-top: 6px;
+}
+
+/* force all textareas/inputs inside a tweet to follow dark style (overrides browser) */
+.tweet textarea,
+.tweet input[type="text"],
+.tweet input[type="search"] {
+  background: #0f161a !important;
+  color: #fff !important;
+  border: 1px solid #23282b !important;
+  padding: 10px 14px !important;
+  border-radius: 18px !important;
+  outline: none !important;
+  resize: vertical !important;
+}
+
+/* reply input (the box where you write a reply) */
+.tweet .comment-input {
+  width: 100%;
+  min-height: 56px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid #23282b;
+  background: #0f161a;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* submit button layout — don't float; use flex alignment */
+.tweet .comment-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  align-items: center;
+}
+
+/* post button */
+.tweet .post-comment {
+  background: #1d9bf0;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s;
+  align-self: flex-end;
+}
+.tweet .post-comment:hover { background: #1588d1; }
+
+/* small action row icons (comment/like/share) */
+.t-3 { gap: 22px; }           /* tighten spacing a bit */
+.action-btn { color: #8b98a5; }
+.action-btn:hover { color: #1d9bf0; }
+
+/* accessibility: make sure cloned elements in search results look read-only */
+.search-results .tweet { opacity: 0.95; pointer-events: auto; }
+
+  
+  
+  .comment-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background: #16181c;
+    color: #fff;
+    font-size: 14px;
+    resize: none;
+    margin-bottom: 8px;
+  }
+  
+  .post-comment {
+    background: #1d9bf0;
+    color: #fff;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    float: right;
+    transition: background 0.2s ease;
+  }
+  
+  .post-comment:hover {
+    background: #1a8cd8;
+  }
+  

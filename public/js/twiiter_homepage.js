@@ -1,6 +1,10 @@
+
+const tweetData = {};
 $(document).ready(function() {
     // Initialize the homepage
+    
     initializeHomepage();
+
     
     // Tweet functionality
     initializeTweetFeatures();
@@ -132,16 +136,22 @@ function createTweetElement(tweetText) {
                     <span class="content-2">${escapeHtml(tweetText)}</span>
                 </div>
                 <div class="t-3">
-                    <i class="far fa-comment" title="Reply"></i>
-                    <i class="far fa-retweet" title="Retweet"></i>
-                    <i class="far fa-heart fav" title="Like"></i>
-                    <i class="far fa-share" title="Share"></i>
-                </div>
-                <div class="comment-section">
-                    <textarea placeholder="Tweet your reply..." rows="3"></textarea>
-                    <button class="reply-btn">Reply</button>
-                    <ul class="comment-list"></ul>
-                </div>
+    <span class="action-btn comment-btn">
+        <i class="far fa-comment"></i> <span class="comment-count">0</span>
+    </span>
+    <span class="action-btn like-btn">
+        <i class="far fa-heart"></i> <span class="like-count">0</span>
+    </span>
+    <span class="action-btn share-btn">
+        <i class="far fa-share-square"></i>
+    </span>
+</div>
+<div class="comment-thread" style="display:none;">
+    <div class="comments-list"></div>
+    <textarea class="comment-input" placeholder="Tweet your reply..."></textarea>
+    <button class="post-comment">Reply</button>
+</div>
+
             </div>
         </div>
     `);
@@ -149,24 +159,44 @@ function createTweetElement(tweetText) {
 
 function initializeInteractionFeatures() {
     // Like functionality
-    $(document).on('click', '.fav', function() {
-        const $this = $(this);
-        const isLiked = $this.hasClass('fas');
-        
-        if (isLiked) {
-            $this.removeClass('fas').addClass('far');
-            $this.css("color", "");
-            showNotification("Tweet unliked", "info");
-        } else {
-            $this.removeClass('far').addClass('fas');
-            $this.css("color", "rgb(238, 24, 95)");
-            showNotification("Tweet liked!", "success");
-            
-            // Add like animation
-            $this.addClass('like-animation');
-            setTimeout(() => $this.removeClass('like-animation'), 600);
-        }
-    });
+    // Like functionality
+$(document).on("click", ".like-btn", function () {
+    const $tweet = $(this).closest(".tweet");
+    const tweetId = $tweet.attr("id") || ("tweet_" + Date.now());
+    if (!tweetData[tweetId]) tweetData[tweetId] = { likes: [], comments: [] };
+
+    const $count = $(this).find(".like-count");
+    const $icon = $(this).find("i");
+    const liked = $icon.hasClass("fas");
+
+    if (liked) {
+        $icon.removeClass("fas").addClass("far").css("color", "");
+        tweetData[tweetId].likes = tweetData[tweetId].likes.filter(u => u !== "You");
+    } else {
+        $icon.removeClass("far").addClass("fas").css("color", "rgb(238,24,95)");
+        tweetData[tweetId].likes.push("You");
+    }
+    $count.text(tweetData[tweetId].likes.length);
+});
+
+// Hover tooltip to show who liked
+$(document).on("mouseenter", ".like-btn", function () {
+    const $tweet = $(this).closest(".tweet");
+    const tweetId = $tweet.attr("id");
+    const likes = tweetData[tweetId]?.likes || [];
+    if (likes.length > 0) {
+        $(this).attr("title", "Liked by " + likes.join(", "));
+    } else {
+        $(this).attr("title", "No likes yet");
+    }
+});
+
+// Share functionality
+$(document).on("click", ".share-btn", function () {
+    const $tweet = $(this).closest(".tweet");
+    openShareModal($tweet.attr("id"));
+});
+
 
     // Retweet functionality
     $(document).on('click', '.fa-retweet', function() {
@@ -205,46 +235,41 @@ function initializeInteractionFeatures() {
 
 function initializeCommentFeatures() {
     // Reply functionality
-    $(document).on('click', '.reply-btn', function() {
-        const $this = $(this);
-        const $textarea = $this.siblings('textarea');
-        const $commentList = $this.siblings('.comment-list');
-        const commentText = $textarea.val().trim();
-        
-        if (commentText.length === 0) {
-            showNotification("Please enter a reply!", "error");
-            return;
-        }
-        
-        if (commentText.length > 280) {
-            showNotification("Reply is too long! Maximum 280 characters.", "error");
-            return;
-        }
-        
-        // Add comment
-        const commentElement = $(`
-            <li class="comment-item">
-                <div class="comment-content">
-                    <strong>You:</strong> ${escapeHtml(commentText)}
-                </div>
-                <div class="comment-time">${new Date().toLocaleTimeString()}</div>
-            </li>
-        `);
-        
-        $commentList.append(commentElement);
-        $textarea.val('');
-        
-        showNotification("Reply posted!", "success");
-    });
+        // Toggle comment thread
+        $(document).on("click", ".comment-btn", function () {
+            $(this).closest(".tweet").find(".comment-thread").toggle();
+        });
+    
+        // Post comment
+        $(document).on("click", ".post-comment", function () {
+            const $tweet = $(this).closest(".tweet");
+            const tweetId = $tweet.attr("id");
+            if (!tweetData[tweetId]) tweetData[tweetId] = { likes: [], comments: [] };
+    
+            const $input = $tweet.find(".comment-input");
+            const text = $input.val().trim();
+            if (!text) return;
+    
+            tweetData[tweetId].comments.push({ user: "You", text });
+            $tweet.find(".comments-list").append(`<div class="comment-item"><strong>You:</strong> ${escapeHtml(text)}</div>`);
+    
+            // Update count
+            const $count = $tweet.find(".comment-count");
+            $count.text(tweetData[tweetId].comments.length);
+    
+            $input.val("");
+        });
+    }
+    
 
-    // Enter key to reply
-    $(document).on('keypress', 'textarea', function(e) {
-        if (e.which === 13 && !e.shiftKey) {
-            e.preventDefault();
-            $(this).siblings('.reply-btn').click();
-        }
-    });
-}
+ // Enter key to reply
+$(document).on('keypress', '.comment-input', function(e) {
+    if (e.which === 13 && !e.shiftKey) {
+        e.preventDefault();
+        $(this).siblings('.post-comment').click();
+    }
+});
+
 
 function initializeSearchFeatures() {
     // Enhanced search functionality
@@ -803,3 +828,16 @@ $('<style>')
         }
     `)
     .appendTo('head');
+
+    // Share modal
+function openShareModal(tweetId) {
+    $("#shareModal").fadeIn();
+    $("#sendShare").off("click").on("click", function () {
+        const friend = $("#friendSelect").val();
+        closeShareModal();
+        showNotification(`Tweet shared with ${friend}`, "success");
+    });
+}
+function closeShareModal() {
+    $("#shareModal").fadeOut();
+}
