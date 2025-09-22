@@ -1,6 +1,6 @@
-# Twitter Clone React App
+# Twitter Clone FRONTEND
 
-A modern Twitter clone built with React, featuring a complete social media experience with authentication, messaging, and real-time interactions.
+A modern Twitter clone built , featuring a complete social media experience with authentication, messaging and interaction
 
 ## Features
 
@@ -26,7 +26,7 @@ A modern Twitter clone built with React, featuring a complete social media exper
 - **Interact**: Like, retweet, and comment on tweets
 - **Search**: Find tweets, profiles, and hashtags
 - **Trending**: See what's popular
-- **Friend Requests**: Manage connection requests
+
 
 ### Messages
 - **Categories**: Primary, General, and Request messages
